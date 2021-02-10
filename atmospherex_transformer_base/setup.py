@@ -5,7 +5,7 @@ setuptools.setup(
     author="Ambiata",
     description="Base atmosphere transformer templator.",
     long_description_content_type="text/markdown",
-    url="https://github.com/ambiata/atmospherex.git#subdirectory=atmospherex-transformer-base",
+    url="https://github.com/ambiata/atmosphere-python-sdk.git#subdirectory=atmospherex-transformer-base",
     packages=setuptools.find_packages(),
     include_package_data=True,
     python_requires='>=3.6',
