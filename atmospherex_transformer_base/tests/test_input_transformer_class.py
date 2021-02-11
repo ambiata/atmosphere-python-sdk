@@ -1,10 +1,9 @@
 from datetime import datetime
 
+import numpy as np
+
 from atmospherex_transformer_base.input_transformer import InputTransformer
 from atmospherex_transformer_base.pydantic_models import PredictionRequest
-from pydantic import BaseModel, Field, ValidationError
-import numpy as np
-import pytest
 
 
 class TransformerForTest(InputTransformer):
@@ -18,21 +17,22 @@ def test_transformer_tags_dict():
     test_transformer = TransformerForTest()
     assert isinstance(test_transformer.tags(), dict)
 
+
 def test_empty_data():
     """ Test sending in some empty data and check the output works  """
 
     test_transformer = TransformerForTest()
     result = test_transformer.transform_input_raw({
-      "jsonData": {
-        "source_request": {
-        },
-        'prediction_timestamp': datetime.now()
-      }
+        "jsonData": {
+            "source_request": {
+            },
+            'prediction_timestamp': datetime.now()
+        }
     })
     assert result['data'] == {
         "names": [],
         "tensor": {
-            "shape": (0, ),
+            "shape": (0,),
             "values": []
         }
     }

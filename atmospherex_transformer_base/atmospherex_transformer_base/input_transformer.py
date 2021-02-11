@@ -1,12 +1,13 @@
+import time
+from abc import ABC, abstractmethod
+from typing import Any, Dict
+
+import numpy as np
 from seldon_core.user_model import SeldonComponent
 from seldon_core.utils import construct_response_json
-from abc import ABC, abstractmethod
-import numpy as np
-import time
-from typing import Dict, Any
 
-from .pydantic_models import PredictionRequest
 from .base_transformer import BaseTransformer
+from .pydantic_models import PredictionRequest
 
 
 class InputTransformer(ABC, BaseTransformer, SeldonComponent):

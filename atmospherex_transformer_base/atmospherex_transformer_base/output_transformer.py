@@ -1,12 +1,12 @@
 import json
+import time
+from abc import ABC, abstractmethod
 
 from seldon_core.user_model import SeldonComponent
 from seldon_core.utils import construct_response_json
-from abc import ABC, abstractmethod
-import time
 
-from .pydantic_models import PredictionResponse
 from .base_transformer import BaseTransformer
+from .pydantic_models import PredictionResponse
 
 
 class OutputTransformer(ABC, BaseTransformer, SeldonComponent):

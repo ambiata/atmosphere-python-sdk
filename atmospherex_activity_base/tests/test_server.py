@@ -1,4 +1,5 @@
 from fastapi.testclient import TestClient
+
 from atmospherex_activity_base.server import server
 
 default_prediction_example = {
@@ -50,7 +51,7 @@ default_prediction_example = {
         'name': 'baseline'
     },
     'logs': {}
- }
+}
 
 
 def test_entrypoint_test():
@@ -76,6 +77,7 @@ def test_format_prediction_payload_response():
     assert resp.status_code == 200
     assert resp.json() == default_prediction_example
 
+
 def test_exclusion_rule_condition():
     test_client = TestClient(server)
     resp = test_client.get(
@@ -83,6 +85,7 @@ def test_exclusion_rule_condition():
     )
     assert resp.status_code == 200
     assert resp.json() == {'exclusion_rule_conditions': []}
+
 
 def test_applied_exclusion_conditions():
     test_client = TestClient(server)

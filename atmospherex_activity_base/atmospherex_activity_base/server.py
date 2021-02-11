@@ -1,7 +1,8 @@
 import logging
+
 from fastapi import FastAPI
-from fastapi.testclient import TestClient
 from fastapi.exception_handlers import request_validation_exception_handler
+from fastapi.testclient import TestClient
 from pydantic.error_wrappers import ValidationError
 
 from .api.endpoints import Endpoints
@@ -13,9 +14,11 @@ config = Config()
 module = get_module_constructor(config)
 server = FastAPI()
 
+
 @server.exception_handler(ValidationError)
 async def validation_exception_handler(request, exc):
     return await request_validation_exception_handler(request, exc)
+
 
 endpoints = Endpoints(server, module())
 

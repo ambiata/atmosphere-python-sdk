@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from atmospherex_transformer_base.output_transformer import OutputTransformer
 from atmospherex_transformer_base.pydantic_models import PredictionResponse
 
@@ -17,12 +15,13 @@ def test_transformer_tags_dict():
     test_transformer = TransformerForTest()
     assert isinstance(test_transformer.tags(), dict)
 
+
 def test_empty_data():
     """ Test sending in some empty data and check the output works  """
 
     test_transformer = TransformerForTest()
     result = test_transformer.transform_output_raw({
-        "data":{"names":["a","b"],"tensor":{"shape":[2,2],"values":[0,0,1,1]}}
+        "data": {"names": ["a", "b"], "tensor": {"shape": [2, 2], "values": [0, 0, 1, 1]}}
     })
     assert result['jsonData'] == {
         "action_name": "test_action",

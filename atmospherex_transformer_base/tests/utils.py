@@ -1,10 +1,10 @@
-import json
-import pytest
-from seldon_core.metrics import SeldonMetrics
+import os
+
+from flask import Flask
 # https://github.com/SeldonIO/seldon-core/blob/master/python/seldon_core/microservice.py
 from seldon_core import wrapper as seldon_microservice
-import os
-from flask import Flask
+from seldon_core.metrics import SeldonMetrics
+
 
 def get_test_app(transformer) -> Flask:
     ''' Take a transformer and return a seldon test app '''

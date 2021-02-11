@@ -1,9 +1,11 @@
+import json
+from datetime import datetime
+
+import numpy as np
+from pydantic import BaseModel, Field
+
 from atmospherex_transformer_base.input_transformer import InputTransformer
 from atmospherex_transformer_base.pydantic_models import PredictionRequest
-from datetime import datetime
-from pydantic import BaseModel, Field
-import numpy as np
-import json
 from .utils import get_test_app
 
 
@@ -12,7 +14,6 @@ def test_invalid_field():
 
     class TestModel(BaseModel):
         age: int = Field(..., ge=0, le=5, title='Age')
-
 
     class TestInputTransformer(InputTransformer):
 

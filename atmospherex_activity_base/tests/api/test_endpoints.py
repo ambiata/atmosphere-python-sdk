@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+
 from fastapi.testclient import TestClient
 
 from atmospherex_activity_base.pydantic_models import ComputeRewardResponse, Versions

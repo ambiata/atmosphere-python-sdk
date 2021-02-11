@@ -3,7 +3,8 @@ from typing import Tuple
 
 from requests import Response
 
-from .pydantic_models import ComputeRewardResponse, PredictionResponsePayloadFormatListResponse, DefaultPredictionResponse, ExclusionRuleConditionListResponse, AppliedExclusionConditionsResponse
+from .pydantic_models import (AppliedExclusionConditionsResponse, ComputeRewardResponse, DefaultPredictionResponse,
+                              ExclusionRuleConditionListResponse, PredictionResponsePayloadFormatListResponse)
 
 
 class BaseActivityCustomCode(ABC):
@@ -57,7 +58,7 @@ class BaseActivityCustomCode(ABC):
         pass
 
     def get_prediction_response_payload_formats(
-        self,
+            self,
     ) -> PredictionResponsePayloadFormatListResponse:
         """
         Return the list of available format of the prediction payload. Every format should have a name and a description
@@ -65,7 +66,8 @@ class BaseActivityCustomCode(ABC):
         """
         return {"prediction_response_payload_formats": []}
 
-    def format_prediction_payload_response(self, default_prediction_response: DefaultPredictionResponse, payload_format: str) -> dict:
+    def format_prediction_payload_response(self, default_prediction_response: DefaultPredictionResponse,
+                                           payload_format: str) -> dict:
         """
         You can format the prediction the way you want based on the information returned by default
         """

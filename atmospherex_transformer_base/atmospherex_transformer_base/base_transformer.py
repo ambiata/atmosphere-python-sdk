@@ -1,6 +1,7 @@
-from pydantic import ValidationError
-import flask
 from typing import Dict
+
+import flask
+from pydantic import ValidationError
 
 
 class BaseTransformer:
