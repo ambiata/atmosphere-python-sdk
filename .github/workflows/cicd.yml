@@ -1,0 +1,49 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test-base-activity:
+    name: Test base activity
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Run the tests on the base activity
+      id: test-activity-base
+      run: |
+        docker build -f Dockerfile-activity-base-test -t activity-base-test .
+        docker run activity-base-test
+
+  test-base-transformer:
+    name: Test base transformer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Run the tests on the base transformer
+        id: test-transformer-base
+        run: |
+          docker build -f Dockerfile-transformer-base-test -t transformer-base-test .
+          docker run transformer-base-test
+
+  release:
+    name: Create new release
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs: [test-base-activity, test-base-transformer]
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Bump version and push tag
+      id: push-tag
+      uses: anothrNick/github-tag-action@1.26.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        WITH_V: true
