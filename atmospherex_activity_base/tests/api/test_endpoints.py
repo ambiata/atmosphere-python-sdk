@@ -1,15 +1,19 @@
+from dataclasses import dataclass
 from fastapi.testclient import TestClient
 
 from atmospherex_activity_base.pydantic_models import ComputeRewardResponse, Versions
 from ..activity_for_tests import ActivityCustomCodeForTest, ExpectedModel
 
-a = 'abc'
-b = 3
-good_prediction = ExpectedModel(a=a, b=b)
+
+@dataclass(frozen=True)
+class Example:
+    a: str = 'abc'
+    b: int = 3
+    good_prediction: ExpectedModel = ExpectedModel(a=a, b=b)
 
 
 def test_validate_prediction(client: TestClient) -> None:
-    response = client.post('/validate-prediction-request', json=good_prediction.dict())
+    response = client.post('/validate-prediction-request', json=Example.good_prediction.dict())
     assert response.status_code == 204
 
 
@@ -18,7 +22,7 @@ def test_validate_prediction_not_valid(client: TestClient) -> None:
 
 
 def test_validate_outcome(client: TestClient) -> None:
-    response = client.post('/validate-outcome-request', json=good_prediction.dict())
+    response = client.post('/validate-outcome-request', json=Example.good_prediction.dict())
     assert response.status_code == 204
 
 
@@ -27,11 +31,11 @@ def test_validate_outcome_not_valid(client: TestClient) -> None:
 
 
 def test_compute_rewards(client: TestClient) -> None:
-    response = client.post('/compute-reward', json=good_prediction.dict())
+    response = client.post('/compute-reward', json=Example.good_prediction.dict())
     assert response.status_code == 200
     # Raise an exception if not if the model does not validate the payload
     compute_reward_response = ComputeRewardResponse.parse_obj(response.json())
-    assert compute_reward_response.reward == b
+    assert compute_reward_response.reward == Example.b
 
 
 def test_versions(client: TestClient) -> None:
@@ -52,13 +56,13 @@ def _failed_validation(client, path):
     assert response.status_code == 422
 
     # Extra field
-    data = good_prediction.dict()
+    data = Example.good_prediction.dict()
     data['c'] = 2
     response = client.post(path, json=data)
     assert response.status_code == 422
 
     # Wrong type
-    data = good_prediction.dict()
+    data = Example.good_prediction.dict()
     data['b'] = "def"
     response = client.post(path, json=data)
     assert response.status_code == 422

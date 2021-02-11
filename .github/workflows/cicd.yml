@@ -7,7 +7,6 @@ on:
   pull_request:
 
 jobs:
-    
   test-base-activity:
     name: Test base activity
     runs-on: ubuntu-latest

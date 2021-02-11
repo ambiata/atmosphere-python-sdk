@@ -4,14 +4,8 @@ from datetime import datetime
 from pydantic import BaseModel, Field
 import numpy as np
 import json
-import pytest
 from .utils import get_test_app
 
-
-def client():
-    seldon_metrics = SeldonMetrics(worker_id_func=os.getpid)
-
-    pass
 
 def test_invalid_field():
     ''' Test invalid field, should get 422 error '''

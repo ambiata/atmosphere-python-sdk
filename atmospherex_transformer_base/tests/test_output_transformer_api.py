@@ -1,17 +1,7 @@
 from atmospherex_transformer_base.output_transformer import OutputTransformer
 from atmospherex_transformer_base.pydantic_models import PredictionResponse
-from datetime import datetime
-from pydantic import BaseModel, Field
-import numpy as np
-import json
-import pytest
 from .utils import get_test_app
 
-
-def client():
-    seldon_metrics = SeldonMetrics(worker_id_func=os.getpid)
-
-    pass
 
 def test_valid_request():
 
