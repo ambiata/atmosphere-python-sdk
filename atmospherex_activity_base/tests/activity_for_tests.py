@@ -30,7 +30,7 @@ class ActivityCustomCodeForTest(BaseActivityCustomCode):
     def requirement_file_path(self) -> str:
         file = NamedTemporaryFile(mode='w+t', delete=False)
         string_test = f"""
-            git+ssh://git@github.com/ambiata/atmosphere-python-sdk.git@{self.base_version}#subdirectory=atmospherex_activity_base
+            git+https://github.com/ambiata/atmosphere-python-sdk@{self.base_version}#subdirectory=atmospherex_activity_base
             click==7.1.2
             fastapi==0.61.1
             h11==0.9.0
