@@ -8,7 +8,7 @@ from atmospherex_activity_base.version import ConfigError, get_base_version_from
 def test_get_version_from_requirement_file():
     version = "v0.0.24"
     string_test = f"""
-    git+https://github.com/ambiata/atmosphere-python-sdk@{version}#subdirectory=atmospherex_activity_base
+    git+https://github.com/ambiata/atmosphere-python-sdk.git@{version}#subdirectory=atmospherex_activity_base
     click==7.1.2
     fastapi==0.61.1
     h11==0.9.0
