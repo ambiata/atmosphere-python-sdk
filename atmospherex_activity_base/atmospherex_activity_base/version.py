@@ -4,7 +4,7 @@ from .base_config import ConfigError
 
 
 def get_base_version_from_requirement_file(requirement_file_path: str) -> str:
-    reg = r"git\+ssh\:\/\/git\@github\.com\/ambiata\/atmospherex\.git\@(.*)\#subdirectory=atmospherex_activity_base$"
+    reg = r"git\+https\:\/\/git\@github\.com\/ambiata\/atmosphere-python-sdk\.git\@(.*)\#subdirectory=atmospherex_activity_base$"
     with open(requirement_file_path) as file:
         for line in file:
             match = re.search(reg, line.strip())
