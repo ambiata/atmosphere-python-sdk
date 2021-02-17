@@ -22,7 +22,7 @@ class MyClass(BaseActivityCustomCode):
 The pip command is:
 
 ```shell script
-pip install git+ssh://git@github.com/ambiata/atmospherex.git@{tag}#subdirectory=atmospherex_activity_base
+pip install git+ssh://git@github.com/ambiata/atmosphere-python-sdk.git@{tag}#subdirectory=atmospherex_activity_base
 ```
 
 ## Fast validation
