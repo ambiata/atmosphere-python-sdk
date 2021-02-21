@@ -1,5 +1,9 @@
 import setuptools
 
+def get_version():
+    with open('VERSION') as version_file:
+	return version_file.readlines()[1].strip()
+
 setuptools.setup(
     name="atmosphere",
     author="Ambiata",
@@ -8,6 +12,7 @@ setuptools.setup(
     url="https://github.com/ambiata/atmosphere-python-sdk.git",
     packages=setuptools.find_packages(),
     include_package_data=True,
+    version=get_version(),
     python_requires='>=3.6',
     install_requires=[
         'apscheduler>=3.6.3',
