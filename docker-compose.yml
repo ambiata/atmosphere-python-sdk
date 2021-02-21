@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  base:
+    container_name: atmosphere-sdk-base
+    image: atmosphere-sdk-base
+    build:
+      context: .
