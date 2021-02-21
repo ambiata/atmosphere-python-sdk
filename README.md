@@ -6,10 +6,10 @@ the libraries you need.
 
 ### Sub Packages
 ## To get started with activities
-[activity base](/atmosphere/activity)
+[activity](/atmosphere/activity)
 
 ## To implement a transformer that we support
-[transformer base](/atmosphere/transformer)
+[transformer](/atmosphere/transformer)
 
 ### Test everything
 docker build . -t atmosphere
