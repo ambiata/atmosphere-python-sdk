@@ -7,7 +7,7 @@ on:
   pull_request:
 
 jobs:
-  test-base-activity:
+  test-all:
     name: Test base activity
     runs-on: ubuntu-20.04
     steps:
@@ -15,30 +15,16 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run the tests on the base activity
-        id: test-activity-base
+        id: run-tests
         run: |
-          docker build -f Dockerfile-activity-base-test -t activity-base-test .
-          docker run activity-base-test
-
-  test-base-transformer:
-    name: Test base transformer
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Run the tests on the base transformer
-        id: test-transformer-base
-        run: |
-          docker build -f Dockerfile-transformer-base-test -t transformer-base-test .
-          docker run transformer-base-test
-
+          docker build -f Dockerfile -t activity-base-test .
+          docker run activity-base-test scripts/test.sh
 
   release:
     name: Create new release
     runs-on: ubuntu-20.04
     if: github.ref == 'refs/heads/main'
-    needs: [ test-base-activity, test-base-transformer ]
+    needs: [ test-all ]
     steps:
     - name: Dry bump version and push tag
       id: dry-bump-tag
@@ -62,7 +48,7 @@ jobs:
         echo "${NEW_TAG}" >> VERSION
         git add atmospherex_demo_sushi/VERSION
         git commit -m "[tag] version ${NEW_TAG}"
-        git push origin master
+        git push origin main
     - name: Checkout
       uses: actions/checkout@v2
     - name: Bump version and push tag
