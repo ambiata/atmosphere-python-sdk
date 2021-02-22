@@ -8,17 +8,17 @@ on:
 
 jobs:
   test-all:
-    name: Test base activity
+    name: Test the SDK
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Run the tests on the base activity
+      - name: Run the tests on the SDK
         id: run-tests
         run: |
-          docker build -f Dockerfile -t activity-base-test .
-          docker run activity-base-test scripts/test.sh
+          docker build -f Dockerfile -t sdk-test .
+          docker run sdk-test scripts/test.sh
 
   release:
     name: Create new release
