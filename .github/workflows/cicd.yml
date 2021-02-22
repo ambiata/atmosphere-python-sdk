@@ -23,8 +23,7 @@ jobs:
   release:
     name: Create new release
     runs-on: ubuntu-20.04
-    # if: github.ref == 'refs/heads/main'
-    if: github.ref == 'refs/heads/fix/restructure'
+    if: github.ref == 'refs/heads/main'
     needs: [ test-all ]
     steps:
     - name: Dry bump version and push tag
