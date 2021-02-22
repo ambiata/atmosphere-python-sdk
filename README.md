@@ -5,6 +5,12 @@ Please look at each individual sub folder to find more information about
 the libraries you need.
 
 ### Sub Packages
-[atmospherex activity base](/atmospherex_activity_base)
+## To get started with activities
+[activity](/atmosphere/activity)
 
-[atmospherex transformer base](/atmospherex_transformer_base)
+## To implement a transformer that we support
+[transformer](/atmosphere/transformer)
+
+### Test everything
+docker build . -t atmosphere
+docker run atmosphere scripts/test.sh

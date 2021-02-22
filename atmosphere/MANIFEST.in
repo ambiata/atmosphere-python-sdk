@@ -1,0 +1,2 @@
+include atmosphere/activity/*_logging.yaml
+
