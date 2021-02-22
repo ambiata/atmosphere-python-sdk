@@ -16,11 +16,6 @@ class BaseActivityCustomCode(ABC):
     def __init__(self, is_for_mocker: bool = False):
         self.is_for_mocker = is_for_mocker
 
-    @property
-    @abstractmethod
-    def requirement_file_path(self) -> str:
-        pass
-
     @abstractmethod
     def validate_prediction_request(self, prediction_request: dict) -> None:
         """Raise a ValidationError if the received prediction request is not valid"""

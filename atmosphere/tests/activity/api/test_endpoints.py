@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from unittest.mock import patch
 
 from fastapi.testclient import TestClient
 
@@ -44,7 +45,7 @@ def test_versions(client: TestClient) -> None:
     assert response.status_code == 200
     # Raise an exception if not if the model does not validate the payload
     compute_reward_response = Versions.parse_obj(response.json())
-    # assert compute_reward_response.base_version == ActivityCustomCodeForTest.base_version
+    assert compute_reward_response.base_version == "1.0.1"
     assert compute_reward_response.module_version == ActivityCustomCodeForTest.expected_module_version
 
 

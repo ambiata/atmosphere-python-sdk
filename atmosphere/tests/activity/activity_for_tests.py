@@ -26,11 +26,6 @@ class ActivityCustomCodeForTest(BaseActivityCustomCode):
     base_version = "base_version_xyz"
     expected_module_version = '0.4.2'
 
-    @property
-    def requirement_file_path(self) -> str:
-        """ Fix this for the new system """
-        raise NotImplementedError()
-
     def validate_prediction_request(self, prediction_request: dict) -> None:
         ExpectedModel.validate(prediction_request)
 

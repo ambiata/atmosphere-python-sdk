@@ -4,7 +4,7 @@ from starlette.status import HTTP_204_NO_CONTENT
 
 from ..base_class import BaseActivityCustomCode
 from ..pydantic_models import ComputeRewardResponse, Versions, PredictionResponsePayloadFormatListResponse, ExclusionRuleConditionListResponse, AppliedExclusionConditionsResponse
-from ..version import get_base_version
+from atmosphere._version import get_version
 
 logger = logging.getLogger(__name__)
 
@@ -13,13 +13,11 @@ class Endpoints:
     def __init__(self, router, module: BaseActivityCustomCode):
         self.router = router
         self.module = module
-        # self.base_version = get_base_version()
-        self.base_version = "3"
         self._init_routes()
 
     def get_versions(self) -> Versions:
         return Versions(
-            base_version=self.base_version,
+            base_version=get_version(),
             module_version=self.module.get_module_version()
         )
 

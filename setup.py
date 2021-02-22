@@ -1,8 +1,5 @@
 import setuptools
-
-def get_version():
-    with open('VERSION') as version_file:
-	return version_file.readlines()[1].strip()
+from atmosphere._version import get_version
 
 setuptools.setup(
     name="atmosphere",

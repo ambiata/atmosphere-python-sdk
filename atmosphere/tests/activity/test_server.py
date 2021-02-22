@@ -1,4 +1,6 @@
 from fastapi.testclient import TestClient
+from unittest.mock import patch
+import importlib.metadata
 
 from atmosphere.activity.server import server
 
@@ -53,11 +55,12 @@ default_prediction_example = {
     'logs': {}
 }
 
-
-def test_entrypoint_test():
-    test_client = TestClient(server)
-    resp = test_client.get('/versions')
+@patch("importlib.metadata", lambda: "foo")
+def test_entrypoint_test(client: TestClient):
+    resp = client.get('/versions')
     assert resp.status_code == 200
+    assert len(resp.json()["base_version"]) > 0
+    assert len(resp.json()["module_version"]) > 0
 
 
 def test_get_prediction_response_payload_formats():
