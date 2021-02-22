@@ -1,2 +1,2 @@
 include atmosphere/activity/*_logging.yaml
-
+include atmosphere/VERSION
