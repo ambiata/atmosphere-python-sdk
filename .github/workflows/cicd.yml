@@ -28,19 +28,19 @@ jobs:
     steps:
     - name: Dry bump version and push tag
       id: dry-bump-tag
-      if: github.event_name == 'push' &&  github.ref == 'refs/heads/master'
+      if: github.event_name == 'push' &&  github.ref == 'refs/heads/main'
       uses: anothrNick/github-tag-action@1.26.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
         DRY_RUN: true
     - name: Setup git config
-      if: github.event_name == 'push' &&  github.ref == 'refs/heads/master'
+      if: github.event_name == 'push' &&  github.ref == 'refs/heads/main'
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "info@ambiata.com"
     - name: Commit the new version of the python package
-      if: github.event_name == 'push' &&  github.ref == 'refs/heads/master'
+      if: github.event_name == 'push' &&  github.ref == 'refs/heads/main'
       env:
         NEW_TAG: ${{ steps.dry-bump-tag.outputs.new_tag }}
       run: |
