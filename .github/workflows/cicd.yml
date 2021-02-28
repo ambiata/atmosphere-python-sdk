@@ -17,7 +17,7 @@ jobs:
     - name: Lint
       id: run-linter
       run: |
-        docker-compose run atmosphere-sdk-base bash -c "pip install -r requirements-dev.txt && ./scripts/lint.sh"
+        docker-compose run base bash -c "pip install -r requirements-dev.txt && ./scripts/lint.sh"
 
   test-all:
     name: Test base activity
