@@ -7,6 +7,18 @@ on:
   pull_request:
 
 jobs:
+  lint:
+    name: Run the linter
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Lint
+      id: run-linter
+      run: |
+        docker-compose run atmosphere-sdk-base bash -c "pip install -r requirements-dev.txt && ./scripts/lint.sh"
+
   test-all:
     name: Test base activity
     runs-on: ubuntu-20.04
@@ -24,7 +36,7 @@ jobs:
     name: Create new release
     runs-on: ubuntu-20.04
     if: github.ref == 'refs/heads/main'
-    needs: [ test-all ]
+    needs: [ lint, test-all ]
     steps:
     - name: Checkout
       uses: actions/checkout@v2
