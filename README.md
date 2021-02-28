@@ -14,3 +14,9 @@ the libraries you need.
 ### Test everything
 docker build . -t atmosphere
 docker run atmosphere scripts/test.sh
+
+### Format everything (eg. PEP8 / fix unused imports / etc)
+```shell
+docker-compose run base ./scripts/format.sh
+```
+

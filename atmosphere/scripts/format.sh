@@ -2,10 +2,10 @@
 set -x
 
 # Remove unused imports
-autoflake --ignore-init-module-imports --in-place -r --remove-all-unused-imports atmosphere
+autoflake --ignore-init-module-imports --in-place -r --remove-all-unused-imports .
 # Sort imports one per line, so autoflake can remove unused imports
-autopep8 --in-place --aggressive --aggressive --recursive atmosphere
-isort --recursive  --force-single-line-imports --apply atmosphere
+autopep8 --in-place --aggressive --aggressive --recursive .
+isort --recursive  --force-single-line-imports --apply .
 # --exclude=__init__.py
-black atmosphere
-isort --recursive --apply atmosphere
+black .
+isort --recursive --apply .
