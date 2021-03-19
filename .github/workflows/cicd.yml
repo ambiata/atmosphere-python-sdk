@@ -7,27 +7,37 @@ on:
   pull_request:
 
 jobs:
-  test-all:
-    name: Test the SDK
+  lint:
+    name: Run the linter
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v2
 
-      - name: Run the tests on the SDK
-        id: run-tests
-        run: |
-          docker build -f Dockerfile -t sdk-test .
-          docker run sdk-test scripts/test.sh
+    - name: Lint
+      run: |
+        docker-compose run base bash -c "pip install -r requirements-dev.txt && ./scripts/lint.sh"
+    
+  test:
+    name: Run tests
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Test the image
+      run: |
+        docker-compose run base bash -c "pip install -r requirements-dev.txt && ./scripts/test.sh"
 
   release:
     name: Create new release
     runs-on: ubuntu-20.04
     if: github.ref == 'refs/heads/main'
-    needs: [ test-all ]
+    needs: [ lint, test]
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+
     - name: Dry bump version and push tag
       id: dry-bump-tag
       if: github.event_name == 'push' &&  github.ref == 'refs/heads/main'
@@ -36,11 +46,13 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
         DRY_RUN: true
+
     - name: Setup git config
       if: github.event_name == 'push' &&  github.ref == 'refs/heads/main'
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "info@ambiata.com"
+
     - name: Commit the new version of the python package
       if: github.event_name == 'push' &&  github.ref == 'refs/heads/main'
       env:
@@ -51,8 +63,10 @@ jobs:
         git add atmosphere/VERSION
         git commit -m "[tag] version ${NEW_TAG}"
         git push origin main
+
     - name: Checkout
       uses: actions/checkout@v2
+
     - name: Bump version and push tag
       id: push-tag
       uses: anothrNick/github-tag-action@1.34.0

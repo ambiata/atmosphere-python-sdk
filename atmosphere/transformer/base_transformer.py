@@ -10,9 +10,11 @@ class BaseTransformer:
     custom activity and handle the boilerplate transformation methods
     that we need..
     """
-    # https://docs.seldon.io/projects/seldon-core/en/v1.1.0/python/python_component.html#user-defined-exceptions
-    model_error_handler = flask.Blueprint('error_handlers', __name__)
 
+    # https://docs.seldon.io/projects/seldon-core/en/v1.1.0/python/python_component.html#user-defined-exceptions
+    model_error_handler = flask.Blueprint("error_handlers", __name__)
+
+    @staticmethod
     @model_error_handler.app_errorhandler(ValidationError)
     def handle_custom_error(validation_error):
         response = flask.jsonify(validation_error.errors())

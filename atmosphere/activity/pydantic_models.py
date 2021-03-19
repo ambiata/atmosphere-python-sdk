@@ -7,7 +7,7 @@ from pydantic import BaseModel
 
 class BaseModelForbiddingExtraFields(BaseModel):
     class Config:
-        extra = 'forbid'
+        extra = "forbid"
 
 
 class ComputeRewardResponse(BaseModelForbiddingExtraFields):

@@ -7,7 +7,7 @@ python_packages="atmosphere tests"
 autoflake --ignore-init-module-imports --in-place -r --remove-all-unused-imports $python_packages
 # Sort imports one per line, so autoflake can remove unused imports
 autopep8 --in-place --aggressive --aggressive --recursive $python_packages
-isort --recursive  --force-single-line-imports --apply $python_packages
+isort --force-single-line-imports $python_packages
 # --exclude=__init__.py
 black $python_packages
-isort --recursive --apply $python_packages
+isort $python_packages

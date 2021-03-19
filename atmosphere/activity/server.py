@@ -24,6 +24,6 @@ endpoints = Endpoints(server, module())
 
 if __name__ == "__main__":
     test_client = TestClient(server)
-    resp = test_client.get('/versions')
+    resp = test_client.get("/versions")
     assert resp.status_code == 200
     logger.info("The server started well")

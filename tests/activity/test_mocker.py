@@ -20,12 +20,10 @@ class TestMocker(unittest.TestCase):
         httpretty.register_uri(
             httpretty.POST,
             "http://mocker-test-url.atmospherex/predictions",
-            body=json.dumps(expected_prediction)
+            body=json.dumps(expected_prediction),
         )
         httpretty.register_uri(
-            httpretty.POST,
-            "http://mocker-test-url.atmospherex/outcomes",
-            status=204
+            httpretty.POST, "http://mocker-test-url.atmospherex/outcomes", status=204
         )
 
         prediction_response, extra_info = self.mocker.send_prediction()
@@ -35,13 +33,15 @@ class TestMocker(unittest.TestCase):
         outcome_response = self.mocker.send_outcome(prediction_response, extra_info)
         self.assertEqual(outcome_response.status_code, 204)
 
-    @patch('random.uniform', lambda min, max: 1)
-    @patch('atmosphere.activity.mocker.mocker.datetime')
+    @patch("random.uniform", lambda min, max: 1)
+    @patch("atmosphere.activity.mocker.mocker.datetime")
     def test_outcome_time_some(self, mock_datetime):
         mock_datetime.now = Mock(return_value=datetime.datetime(2019, 1, 1, 0, 0, 0))
-        self.assertEqual(datetime.datetime(2019, 1, 1, 0, 0, 1), self.mocker.get_outcome_time())
+        self.assertEqual(
+            datetime.datetime(2019, 1, 1, 0, 0, 1), self.mocker.get_outcome_time()
+        )
 
-    @patch('random.uniform', lambda min, max: 90)
+    @patch("random.uniform", lambda min, max: 90)
     def test_outcome_time_none_if_random_exceeds_timeout(self):
         self.assertEqual(self.mocker.get_outcome_time(), None)
 
