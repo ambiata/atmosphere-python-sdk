@@ -12,7 +12,7 @@ def test_atmospherex_count():
         mock_request.register_uri(
             "GET",
             f"{atmospherex_base_url}/api"
-            + f"/inferences/{activity_endpoint}/historical-data/count",
+            f"/inferences/{activity_endpoint}/historical-data/count",
             status_code=200,
             json={"count": 10},
         )
@@ -26,14 +26,14 @@ def test_atmospherex_get_predictions():
         mock_request.register_uri(
             "GET",
             f"{atmospherex_base_url}/api"
-            + f"/inferences/{activity_endpoint}/historical-data/count",
+            f"/inferences/{activity_endpoint}/historical-data/count",
             status_code=200,
             json={"count": 150},
         )
         mock_request.register_uri(
             "GET",
             f"{atmospherex_base_url}/api"
-            + f"/inferences/{activity_endpoint}/historical-data",
+            f"/inferences/{activity_endpoint}/historical-data",
             status_code=200,
             json={
                 "predictions": [{"user": "James", "order": "spicy meatball sandwich"}]
@@ -43,7 +43,7 @@ def test_atmospherex_get_predictions():
         mock_request.register_uri(
             "GET",
             f"{atmospherex_base_url}/api"
-            + f"/inferences/{activity_endpoint}/historical-data?skip=100",
+            f"/inferences/{activity_endpoint}/historical-data?skip=100",
             status_code=200,
             json={
                 "predictions": [{"user": "Jim", "order": "spicy meatball sandwich"}]

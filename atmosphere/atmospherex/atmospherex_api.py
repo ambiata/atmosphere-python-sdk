@@ -38,7 +38,7 @@ class AtmospherexAPI:
         }
         url = (
             f"{self.atmospherex_base_url}/api"
-            + f"/inferences/{activity_endpoint}/historical-data/count"
+            f"/inferences/{activity_endpoint}/historical-data/count"
         )
         response = requests.get(url, params=payload)
         response.raise_for_status()
@@ -54,14 +54,14 @@ class AtmospherexAPI:
         Return a generator of predictions of the activity between
         from_datetime and to_datetime if provided
 
-        :param activity_endpoint: the activity uniq endpoint
+        :param activity_endpoint: the activity unique endpoint
         :param from_datetime: consider predictions from this datetime
         :param to_datetime: consider predictions to this datetime
         """
         count = self.count_predictions(activity_endpoint, from_datetime, to_datetime)
         url = (
             f"{self.atmospherex_base_url}/api"
-            + f"/inferences/{activity_endpoint}/historical-data"
+            f"/inferences/{activity_endpoint}/historical-data"
         )
         for iteration in range(math.ceil(count / LIMIT)):
             payload = {
