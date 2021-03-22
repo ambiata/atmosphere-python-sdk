@@ -6,16 +6,18 @@ formatters:
     format: "%(asctime)-23.23s %(levelname)-5.5s %(name)s: %(message)s"
 filters:
   stderr_filter:
-    (): atmosphere.activity.logger_classes.StdErrFilter
+    (): atmosphere.custom_activity.logger_classes.StdErrFilter
   stdout_filter:
-    (): atmosphere.activity.logger_classes.StdOutFilter
+    (): atmosphere.custom_activity.logger_classes.StdOutFilter
+  health_check_filter:
+    (): atmosphere.custom_activity.logger_classes.HealthCheckFilter
 
 handlers:
   stdout:
     class: logging.StreamHandler
-    level: DEBUG
+    level: INFO
     formatter: simple
-    filters: [ stdout_filter ]
+    filters: [ stdout_filter, health_check_filter ]
     stream: ext://sys.stdout
 
   stderr:
@@ -27,10 +29,10 @@ handlers:
 
 loggers:
   atmosphere_api:
-    level: DEBUG
+    level: INFO
   uvicorn:
     level: INFO
 
 root:
-  level: DEBUG
+  level: INFO
   handlers: [ stdout, stderr ]

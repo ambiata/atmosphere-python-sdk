@@ -4,8 +4,8 @@ import requests
 from pydantic import BaseModel
 from requests.models import Response
 
-from atmosphere.activity import BaseActivityCustomCode
-from atmosphere.activity.pydantic_models import ComputeRewardResponse
+from atmosphere.custom_activity import BaseActivityCustomCode
+from atmosphere.custom_activity.pydantic_models import ComputeRewardResponse
 
 prediction_extra_info = {"extra": "inf", "awesome_value": 42}
 

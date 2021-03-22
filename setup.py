@@ -31,6 +31,7 @@ setuptools.setup(
         'httpretty',
         'pytest',
         'pytest-cov',
-        'pytest-env'
+        'pytest-env',
+        'requests-mock==1.8.0',
     ]
 )

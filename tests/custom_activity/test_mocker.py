@@ -5,9 +5,9 @@ from unittest.mock import Mock, patch
 
 import httpretty
 
-from atmosphere.activity.mocker import main_mocker
-from atmosphere.activity.mocker.mocker import Mocker
-from atmosphere.activity.mocker.mocker_config import MockerConfig
+from atmosphere.custom_activity.mocker import main_mocker
+from atmosphere.custom_activity.mocker.mocker import Mocker
+from atmosphere.custom_activity.mocker.mocker_config import MockerConfig
 
 
 class TestMocker(unittest.TestCase):
@@ -34,7 +34,7 @@ class TestMocker(unittest.TestCase):
         self.assertEqual(outcome_response.status_code, 204)
 
     @patch("random.uniform", lambda min, max: 1)
-    @patch("atmosphere.activity.mocker.mocker.datetime")
+    @patch("atmosphere.custom_activity.mocker.mocker.datetime")
     def test_outcome_time_some(self, mock_datetime):
         mock_datetime.now = Mock(return_value=datetime.datetime(2019, 1, 1, 0, 0, 0))
         self.assertEqual(

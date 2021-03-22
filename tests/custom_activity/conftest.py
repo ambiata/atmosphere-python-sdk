@@ -3,7 +3,7 @@ from typing import Generator
 import pytest
 from fastapi.testclient import TestClient
 
-from atmosphere.activity.server import server
+from atmosphere.custom_activity.server import server
 
 
 @pytest.fixture(scope="module")
