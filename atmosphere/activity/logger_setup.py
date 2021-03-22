@@ -7,10 +7,16 @@ import yaml
 
 
 class HealthCheckFilter(logging.Filter):
-    list_filtered_endpoints = ['GET / ', 'GET /docs/openapi.json ', 'GET /health ', 'GET /status ', 'GET /versions ']
+    list_filtered_endpoints = [
+        "GET / ",
+        "GET /docs/openapi.json ",
+        "GET /health ",
+        "GET /status ",
+        "GET /versions ",
+    ]
 
     def filter(self, record):
-        if record.name != 'uvicorn.access':
+        if record.name != "uvicorn.access":
             return True
         for filtered_endpoint in self.list_filtered_endpoints:
             if record.getMessage().find(filtered_endpoint) != -1:
@@ -42,10 +48,14 @@ def setup_logging():
     """
     Setup logging configuration
     """
-    default_path = 'prod_logging.yaml' if os.getenv('DEBUG', 'False').upper() == 'FALSE' else 'dev_logging.yaml'
+    default_path = (
+        "prod_logging.yaml"
+        if os.getenv("DEBUG", "False").upper() == "FALSE"
+        else "dev_logging.yaml"
+    )
 
     path = Path(__file__).parent / default_path
-    with open(path, 'rt') as f:
+    with open(path, "rt") as f:
         config = yaml.safe_load(f)
     logging.config.dictConfig(config)
 

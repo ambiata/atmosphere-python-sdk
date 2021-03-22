@@ -13,6 +13,6 @@ def main(is_test: bool):
     mocker.start()
 
 
-if __name__ == '__main__':
-    is_test = len(sys.argv) >= 2 and sys.argv[1] == 'test'
-    main(is_test)
+if __name__ == "__main__":
+    is_running_test = len(sys.argv) >= 2 and sys.argv[1] == "test"
+    main(is_running_test)

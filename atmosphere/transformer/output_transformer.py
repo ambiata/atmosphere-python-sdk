@@ -10,13 +10,11 @@ from .pydantic_models import PredictionResponse
 
 
 class OutputTransformer(ABC, BaseTransformer, SeldonComponent):
-
     @abstractmethod
     def apply_transformation(self, msg) -> PredictionResponse:
-        """ Method to be implemented that runs the unique transformation code
+        """Method to be implemented that runs the unique transformation code
         Our implementation of transform_input_raw runs our boilerplate and calls
-        .apply_transformation() """
-        pass
+        .apply_transformation()"""
 
     def transform_output_raw(self, msg):
         """
@@ -31,5 +29,11 @@ class OutputTransformer(ABC, BaseTransformer, SeldonComponent):
             True,
             msg,
             json.loads(prediction_response.json()),
-            custom_metrics=[{"type": "TIMER", "key": "transform_wall_time", "value": wall_time * 1000}],
+            custom_metrics=[
+                {
+                    "type": "TIMER",
+                    "key": "transform_wall_time",
+                    "value": wall_time * 1000,
+                }
+            ],
         )

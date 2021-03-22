@@ -1,7 +1,7 @@
 import os
 
-CLASS_NAME_ENV_VAR_KEY = 'CLASS_NAME'
-MODULE_ENV_VAR_KEY = 'MODULE'
+CLASS_NAME_ENV_VAR_KEY = "CLASS_NAME"
+MODULE_ENV_VAR_KEY = "MODULE"
 
 
 class ConfigError(Exception):
@@ -15,6 +15,7 @@ class Config:
 
         if not self.class_name or not self.module_file:
             raise ValueError(
-                f"The environment variables {CLASS_NAME_ENV_VAR_KEY} and/or {MODULE_ENV_VAR_KEY} have not been "
+                f"The environment variables {CLASS_NAME_ENV_VAR_KEY} "
+                f"and/or {MODULE_ENV_VAR_KEY} have not been "
                 f"provided."
             )

@@ -6,8 +6,8 @@ from datetime import datetime, timedelta
 from apscheduler.schedulers.background import BackgroundScheduler
 from requests import Response
 
-from .mocker_config import MockerConfig
 from ..module_importer import get_module_constructor
+from .mocker_config import MockerConfig
 
 
 def status_ok(response: Response):
@@ -17,8 +17,7 @@ def status_ok(response: Response):
 class Mocker:
     logger = logging.getLogger(__name__)
 
-    def __init__(self,
-                 mocker_config: MockerConfig):
+    def __init__(self, mocker_config: MockerConfig):
         self.mocker_config = mocker_config
         module_constructor = get_module_constructor(mocker_config)
         self.module = module_constructor(is_for_mocker=True)
@@ -48,11 +47,11 @@ class Mocker:
 
     def send_outcome(self, prediction_response: Response, prediction_information: dict):
         response = self.module.send_mock_outcome_request(
-            f'{self.mocker_config.activity_inference_base_url}/outcomes',
+            f"{self.mocker_config.activity_inference_base_url}/outcomes",
             prediction_response,
-            prediction_information
+            prediction_information,
         )
-        self.logger.info('Outcome posted: %s', response.status_code)
+        self.logger.info("Outcome posted: %s", response.status_code)
         if status_ok(response):
             self.outcomes_accepted += 1
         else:
@@ -61,7 +60,7 @@ class Mocker:
 
     def send_prediction(self):
         response, prediction_info = self.module.send_mock_prediction_request(
-            f'{self.mocker_config.activity_inference_base_url}/predictions'
+            f"{self.mocker_config.activity_inference_base_url}/predictions"
         )
         if status_ok(response):
             self._successful_prediction(response, prediction_info)
@@ -73,18 +72,31 @@ class Mocker:
         self.predictions_accepted += 1
         outcome_time = self.get_outcome_time()
         if outcome_time is not None:
-            self.scheduler.add_job(self.send_outcome, 'date', run_date=outcome_time, args=[prediction, prediction_info])
-            self.logger.info('Prediction received, will send outcome at %s', outcome_time)
+            self.scheduler.add_job(
+                self.send_outcome,
+                "date",
+                run_date=outcome_time,
+                args=[prediction, prediction_info],
+            )
+            self.logger.info(
+                "Prediction received, will send outcome at %s", outcome_time
+            )
         else:
-            self.logger.info('Prediction received, no outcome')
+            self.logger.info("Prediction received, no outcome")
 
     def _failed_prediction(self, prediction) -> None:
         self.predictions_rejected += 1
-        self.logger.error('Error requesting prediction. Status=%s Message=%s', prediction.status_code, prediction.text)
+        self.logger.error(
+            "Error requesting prediction. Status=%s Message=%s",
+            prediction.status_code,
+            prediction.text,
+        )
 
     def is_finished(self) -> bool:
         return self.mocker_config.max_predictions and (
-                0 < self.mocker_config.max_predictions <= self.predictions_accepted + self.predictions_rejected
+            0
+            < self.mocker_config.max_predictions
+            <= self.predictions_accepted + self.predictions_rejected
         )
 
     def get_outcome_time(self):
@@ -93,7 +105,8 @@ class Mocker:
 
         delay_outcome_seconds = random.uniform(
             0,
-            self.mocker_config.outcomes_timeout_seconds / self.mocker_config.outcomes_rate
+            self.mocker_config.outcomes_timeout_seconds
+            / self.mocker_config.outcomes_rate,
         )
 
         if self.mocker_config.outcomes_timeout_seconds < delay_outcome_seconds:
@@ -104,7 +117,8 @@ class Mocker:
     def print_report_when_done(self) -> None:
         if self.report_printed:
             return
-        # if there are still some jobs in the queue, we will wait for them to finish before printing the reports as we
+        # if there are still some jobs in the queue, we will wait for them
+        # to finish before printing the reports as we
         # still have some requests to send.
         while self._has_jobs_left_in_queue():
             time.sleep(0.1)
