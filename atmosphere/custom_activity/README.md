@@ -12,7 +12,7 @@ containing all the methods to implement.
 e.g.:
 
 ```python
-from atmosphere.activity import BaseActivityCustomCode
+from atmosphere.custom_activity import BaseActivityCustomCode
 
 
 class MyClass(BaseActivityCustomCode):
@@ -31,13 +31,13 @@ To validate fastly that the application has well been built without having to ru
 
 To check the server, after  selecting your module you can run:
 ```shell script
-MODULE='abc' CLASS_NAME='Def' python -m atmosphere.activity.server
+MODULE='abc' CLASS_NAME='Def' python -m atmosphere.custom_activity.server
 The server started well
 ```
 
 To check the mocker, after selecting your module, you can run:
 ```shell script
-$ ACTIVITY_INFERENCE_BASE_URL="abc" REQUESTS_PER_SECOND=3 OUTCOMES_TIMEOUT_SECONDS=10 OUTCOMES_RATE=0.5 MODULE='abc' CLASS_NAME='Def' python -m atmosphere.activity.mocker.main_mocker test
+$ ACTIVITY_INFERENCE_BASE_URL="abc" REQUESTS_PER_SECOND=3 OUTCOMES_TIMEOUT_SECONDS=10 OUTCOMES_RATE=0.5 MODULE='abc' CLASS_NAME='Def' python -m atmosphere.custom_activity.mocker.main_mocker test
 All good, the mocker could start.
 ```
 
@@ -57,5 +57,5 @@ ENV CLASS_NAME='ClassName'
 
 EXPOSE 8000
 
-CMD ["uvicorn", "--host",  "0.0.0.0", "--port", "8000", "--timeout-keep-alive", "5", "--workers", "4", "atmosphere.activity.server:server"]
+CMD ["uvicorn", "--host",  "0.0.0.0", "--port", "8000", "--timeout-keep-alive", "5", "--workers", "4", "atmosphere.custom_activity.server:server"]
 ```

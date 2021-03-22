@@ -2,7 +2,7 @@ from unittest.mock import patch
 
 from fastapi.testclient import TestClient
 
-from atmosphere.activity.server import server
+from atmosphere.custom_activity.server import server
 
 default_prediction_example = {
     "atmosphere_call_uuid": "82fca11a-3c13-4e9f-93dc-8cbef03ab509",

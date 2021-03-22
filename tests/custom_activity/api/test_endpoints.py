@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 from fastapi.testclient import TestClient
 
-from atmosphere.activity.pydantic_models import ComputeRewardResponse, Versions
+from atmosphere.custom_activity.pydantic_models import ComputeRewardResponse, Versions
 
 from ..activity_for_tests import ActivityCustomCodeForTest, ExpectedModel
 
