@@ -4,7 +4,7 @@ from typing import Generator
 
 import requests
 
-LIMIT = 100
+BATCH_LIMIT = 100
 
 
 class AtmospherexAPI:
@@ -63,11 +63,11 @@ class AtmospherexAPI:
             f"{self.atmospherex_base_url}/api"
             f"/inferences/{activity_endpoint}/historical-data"
         )
-        for iteration in range(math.ceil(count / LIMIT)):
+        for iteration in range(math.ceil(count / BATCH_LIMIT)):
             payload = {
                 "start_prediction_date": from_datetime,
                 "end_prediction_date": to_datetime,
-                "skip": LIMIT * iteration,
+                "skip": BATCH_LIMIT * iteration,
             }
 
             response = requests.get(url, params=payload)
