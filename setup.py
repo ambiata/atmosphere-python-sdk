@@ -26,6 +26,7 @@ setuptools.setup(
         'numpy>=1.19.2',
         'pydantic>=1.6.1',
         'seldon-core>=1.3.0',
+        'simplejson>=3.17.2',
     ],
     tests_require=[
         'httpretty',
