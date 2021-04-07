@@ -20,12 +20,12 @@ setuptools.setup(
     install_requires=[
         'apscheduler>=3.6.3',
         'fastapi>=0.61.1',
-        'pyyaml>=5.3.1',
+        'pyyaml>=5.4.1',
         'requests>=2.24.0',
         'uvicorn>=0.11.8',
         'numpy>=1.19.2',
         'pydantic>=1.6.1',
-        'seldon-core>=1.3.0',
+        'seldon-core>=1.7.0',
         'simplejson>=3.17.2',
     ],
     tests_require=[
