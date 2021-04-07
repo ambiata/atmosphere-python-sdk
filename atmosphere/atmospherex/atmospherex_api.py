@@ -3,6 +3,7 @@ from datetime import datetime
 from typing import Generator
 
 import requests
+import simplejson as json
 
 BATCH_LIMIT = 100
 
@@ -73,3 +74,30 @@ class AtmospherexAPI:
             response = requests.get(url, params=payload)
             response.raise_for_status()
             yield from response.json()["predictions"]
+
+    def dump_predictions(
+        self,
+        activity_endpoint: str,
+        file_path: str,
+        from_datetime: datetime = None,
+        to_datetime: datetime = None,
+    ):
+        """
+        Dump prediction of the activity between
+        from_datetime and to_datetime if provided to a file
+
+        :param activity_endpoint: the activity unique endpoint
+        :param file_path: file path to dump the data
+        :param from_datetime: consider predictions from this datetime
+        :param to_datetime: consider predictions to this datetime
+        """
+        with open(file_path, "w") as fp:
+            json.dump(
+                {
+                    "predictions": self.get_predictions(
+                        activity_endpoint, from_datetime, to_datetime
+                    )
+                },
+                fp,
+                iterable_as_array=True,
+            )
