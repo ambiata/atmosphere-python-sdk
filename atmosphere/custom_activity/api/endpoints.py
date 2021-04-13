@@ -4,6 +4,7 @@ from fastapi import Response
 from starlette.status import HTTP_204_NO_CONTENT
 
 from atmosphere._version import get_version
+
 from ..base_class import BaseActivityCustomCode
 from ..pydantic_models import (AppliedExclusionConditionsResponse,
                                ComputeRewardResponse,
@@ -31,14 +32,14 @@ class Endpoints:
             self.module.validate_prediction_request,
             methods=["POST"],
             status_code=HTTP_204_NO_CONTENT,
-            response_class=Response
+            response_class=Response,
         )
         self.router.add_api_route(
             "/validate-outcome-request",
             self.module.validate_outcome_request,
             methods=["POST"],
             status_code=HTTP_204_NO_CONTENT,
-            response_class=Response
+            response_class=Response,
         )
         self.router.add_api_route(
             "/compute-reward",

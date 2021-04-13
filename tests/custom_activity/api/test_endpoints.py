@@ -4,6 +4,7 @@ from fastapi.testclient import TestClient
 
 from atmosphere.custom_activity.pydantic_models import (ComputeRewardResponse,
                                                         Versions)
+
 from ..activity_for_tests import ActivityCustomCodeForTest, ExpectedModel
 
 
@@ -59,8 +60,8 @@ def test_versions(client: TestClient) -> None:
     compute_reward_response = Versions.parse_obj(response.json())
     assert len(compute_reward_response.base_version) > 0
     assert (
-            compute_reward_response.module_version
-            == ActivityCustomCodeForTest.expected_module_version
+        compute_reward_response.module_version
+        == ActivityCustomCodeForTest.expected_module_version
     )
 
 
