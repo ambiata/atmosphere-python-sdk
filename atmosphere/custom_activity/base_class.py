@@ -96,7 +96,7 @@ class BaseActivityCustomCode(ABC):
         return AppliedExclusionConditionsResponse(applied_exclusion_conditions=[])
 
     def get_bias_attribute_configs(
-        self, prediction_request: dict  # noqa pylint: disable=unused-argument
+        self
     ) -> BiasAttributeConfigListResponse:
         """
         Define the bias attribute configs, these decide which attributes may be
