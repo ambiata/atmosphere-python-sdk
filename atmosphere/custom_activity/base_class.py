@@ -4,10 +4,10 @@ from typing import Tuple
 from requests import Response
 
 from .pydantic_models import (AppliedExclusionConditionsResponse,
+                              BiasAttributeConfigListResponse,
                               ComputeRewardResponse, DefaultPredictionResponse,
                               ExclusionRuleConditionListResponse,
-                              PredictionResponsePayloadFormatListResponse,
-                              BiasAttributeConfigListResponse)
+                              PredictionResponsePayloadFormatListResponse)
 
 
 class BaseActivityCustomCode(ABC):

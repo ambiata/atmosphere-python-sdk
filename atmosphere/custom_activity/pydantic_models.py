@@ -1,7 +1,7 @@
 from datetime import datetime
+from enum import Enum
 from typing import List, Optional
 from uuid import UUID
-from enum import Enum
 
 from pydantic import BaseModel
 
@@ -117,12 +117,13 @@ class BiasAttributeType(str, Enum):
 
 class BiasAttributeConfig(BaseModel):
     name: str
-    path: str # The path is a json path, eg. "context.age"
+    path: str  # The path is a json path, eg. "context.age"
     attribute_type: BiasAttributeType
 
 
 class BiasAttributeConfigListResponse(BaseModel):
-    ''' The custom activity returns the bias attribute configs
+    """The custom activity returns the bias attribute configs
     that atmospherex uses to decide which fields may be used
-    for bias attributes '''
+    for bias attributes"""
+
     bias_attribute_configs: List[BiasAttributeConfig]
