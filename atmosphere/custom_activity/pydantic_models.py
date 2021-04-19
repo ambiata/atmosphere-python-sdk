@@ -1,6 +1,7 @@
 from datetime import datetime
 from typing import List, Optional
 from uuid import UUID
+from enum import Enum
 
 from pydantic import BaseModel
 
@@ -107,3 +108,21 @@ class ExclusionRuleConditionListResponse(BaseModel):
 
 class AppliedExclusionConditionsResponse(BaseModel):
     applied_exclusion_conditions: List[ExclusionRuleCondition]
+
+
+class BiasAttributeType(str, Enum):
+    NUMERICAL = "numerical"
+    CATEGORICAL = "categorical"
+
+
+class BiasAttributeConfig(BaseModel):
+    name: str
+    path: str # The path is a json path, eg. "context.age"
+    attribute_type: BiasAttributeType
+
+
+class BiasAttributeConfigListResponse(BaseModel):
+    ''' The custom activity returns the bias attribute configs
+    that atmospherex uses to decide which fields may be used
+    for bias attributes '''
+    bias_attribute_configs: List[BiasAttributeConfig]

@@ -91,3 +91,10 @@ def test_applied_exclusion_conditions():
     )
     assert resp.status_code == 200
     assert resp.json() == {"applied_exclusion_conditions": []}
+
+
+def test_bias_attribute_configs():
+    test_client = TestClient(server)
+    resp = test_client.get("/bias-attribute-configs")
+    assert resp.status_code == 200
+    assert resp.json() == {"bias_attribute_configs": []}
