@@ -7,6 +7,7 @@ from atmosphere._version import get_version
 
 from ..base_class import BaseActivityCustomCode
 from ..pydantic_models import (AppliedExclusionConditionsResponse,
+                               BiasAttributeConfigListResponse,
                                ComputeRewardResponse,
                                ExclusionRuleConditionListResponse,
                                PredictionResponsePayloadFormatListResponse,
@@ -72,4 +73,10 @@ class Endpoints:
             self.module.get_applied_exclusion_conditions,
             methods=["POST"],
             response_model=AppliedExclusionConditionsResponse,
+        )
+        self.router.add_api_route(
+            "/bias-attribute-configs",
+            self.module.get_bias_attribute_configs,
+            methods=["GET"],
+            response_model=BiasAttributeConfigListResponse,
         )
