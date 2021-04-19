@@ -4,6 +4,7 @@ from typing import Tuple
 from requests import Response
 
 from .pydantic_models import (AppliedExclusionConditionsResponse,
+                              BiasAttributeConfigListResponse,
                               ComputeRewardResponse, DefaultPredictionResponse,
                               ExclusionRuleConditionListResponse,
                               PredictionResponsePayloadFormatListResponse)
@@ -93,3 +94,12 @@ class BaseActivityCustomCode(ABC):
         Define the exclusion rules for the activity
         """
         return AppliedExclusionConditionsResponse(applied_exclusion_conditions=[])
+
+    def get_bias_attribute_configs(
+        self
+    ) -> BiasAttributeConfigListResponse:
+        """
+        Define the bias attribute configs, these decide which attributes may be
+        used by atmospherex as bias attributes
+        """
+        return BiasAttributeConfigListResponse(bias_attribute_configs=[])
