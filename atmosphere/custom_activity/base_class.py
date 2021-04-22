@@ -95,9 +95,7 @@ class BaseActivityCustomCode(ABC):
         """
         return AppliedExclusionConditionsResponse(applied_exclusion_conditions=[])
 
-    def get_bias_attribute_configs(
-        self
-    ) -> BiasAttributeConfigListResponse:
+    def get_bias_attribute_configs(self) -> BiasAttributeConfigListResponse:
         """
         Define the bias attribute configs, these decide which attributes may be
         used by atmospherex as bias attributes

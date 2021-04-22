@@ -87,7 +87,9 @@ class InferenceInfo(BaseModel):
 
 class Logs(BaseModel):
     filtered_action_pool: dict
-    inference: dict = Field({}, title="Inference logs", description="Logs received from inference endpoints")
+    inference: dict = Field(
+        {}, title="Inference logs", description="Logs received from inference endpoints"
+    )
 
 
 class DefaultPredictionResponse(BaseModel):
