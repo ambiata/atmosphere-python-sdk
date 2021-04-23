@@ -45,7 +45,10 @@ default_prediction_example = {
         "allocation": {"current_phase": None, "allocation_random_number": None},
     },
     "predictions": {"name": "baseline"},
-    "logs": {},
+    "logs": {
+        "inference": {},
+        "filtered_action_pool": {}
+    },
 }
 
 
