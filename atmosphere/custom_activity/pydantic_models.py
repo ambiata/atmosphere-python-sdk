@@ -3,7 +3,7 @@ from enum import Enum
 from typing import List, Optional
 from uuid import UUID
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class BaseModelForbiddingExtraFields(BaseModel):
@@ -85,11 +85,18 @@ class InferenceInfo(BaseModel):
     allocation: AllocationLog
 
 
+class Logs(BaseModel):
+    filtered_action_pool: dict
+    inference: dict = Field(
+        {}, title="Inference logs", description="Logs received from inference endpoints"
+    )
+
+
 class DefaultPredictionResponse(BaseModel):
     atmosphere_call_uuid: UUID
     info: InferenceInfo
     predictions: dict
-    logs: dict
+    logs: Logs
 
 
 class ExclusionRuleCondition(BaseModel):
