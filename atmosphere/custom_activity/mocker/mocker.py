@@ -10,7 +10,7 @@ from ..module_importer import get_module_constructor
 from .mocker_config import MockerConfig
 
 
-def status_ok(response: Response):
+def status_ok(response: Response) -> bool:
     return 200 <= response.status_code < 300
 
 
