@@ -6,7 +6,7 @@ the libraries you need.
 
 ### Sub Packages
 ## To get started with activities
-[activity](/atmosphere/activity)
+[activity](/atmosphere/custom_activity)
 
 ## To implement a transformer that we support
 [transformer](/atmosphere/transformer)
