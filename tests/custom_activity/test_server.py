@@ -46,6 +46,8 @@ default_prediction_example = {
     },
     "predictions": {"name": "baseline"},
     "logs": {
+        "activity_traffic_exclusion_rules": [],
+        "entity_applied_exclusion_conditions": [],
         "inference": {},
         "filtered_action_pool": {}
     },

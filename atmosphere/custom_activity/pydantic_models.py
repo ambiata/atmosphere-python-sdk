@@ -85,20 +85,6 @@ class InferenceInfo(BaseModel):
     allocation: AllocationLog
 
 
-class Logs(BaseModel):
-    filtered_action_pool: dict
-    inference: dict = Field(
-        {}, title="Inference logs", description="Logs received from inference endpoints"
-    )
-
-
-class DefaultPredictionResponse(BaseModel):
-    atmosphere_call_uuid: UUID
-    info: InferenceInfo
-    predictions: dict
-    logs: Logs
-
-
 class ExclusionRuleCondition(BaseModel):
     id: str
     name: str
@@ -115,6 +101,36 @@ class ExclusionRuleConditionListResponse(BaseModel):
 
 class AppliedExclusionConditionsResponse(BaseModel):
     applied_exclusion_conditions: List[ExclusionRuleCondition]
+
+
+class TrafficExclusionRule(BaseModel):
+    id: str
+    activity_id: str
+    exclusion_rule_condition_id: str
+
+
+class Logs(BaseModel):
+    filtered_action_pool: dict = Field(
+        {}, title="Subset of the action pool if exclusion of actions applied"
+    )
+    inference: dict = Field(
+        {}, title="Inference logs", description="Logs received from inference endpoints"
+    )
+    activity_traffic_exclusion_rules: List[TrafficExclusionRule] = Field(
+        [],
+        title="Traffic exclusion rules applied for the activity",
+        description="Traffic exclusion rules applied at inference time",
+    )
+    entity_applied_exclusion_conditions: List[ExclusionRuleCondition] = Field(
+        [], title="Applied exclusion conditions for the entity"
+    )
+
+
+class DefaultPredictionResponse(BaseModel):
+    atmosphere_call_uuid: UUID
+    info: InferenceInfo
+    predictions: dict
+    logs: Logs
 
 
 class BiasAttributeType(str, Enum):
