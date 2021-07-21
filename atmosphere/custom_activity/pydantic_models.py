@@ -105,7 +105,6 @@ class AppliedExclusionConditionsResponse(BaseModel):
 
 class TrafficExclusionRule(BaseModel):
     id: str
-    activity_id: str
     exclusion_rule_condition_id: str
 
 
@@ -116,10 +115,13 @@ class Logs(BaseModel):
     inference: dict = Field(
         {}, title="Inference logs", description="Logs received from inference endpoints"
     )
-    activity_traffic_exclusion_rules: List[TrafficExclusionRule] = Field(
+    applied_traffic_exclusion_rules: List[TrafficExclusionRule] = Field(
         [],
-        title="Traffic exclusion rules applied for the activity",
-        description="Traffic exclusion rules applied at inference time",
+        title="Traffic exclusion rules applied for the current deployment/phase",
+        description=(
+            "Traffic exclusion rules applied at the deployment/phase level "
+            "at inference time"
+        ),
     )
     entity_applied_exclusion_conditions: List[ExclusionRuleCondition] = Field(
         [], title="Applied exclusion conditions for the entity"

@@ -46,10 +46,15 @@ default_prediction_example = {
     },
     "predictions": {"name": "baseline"},
     "logs": {
-        "activity_traffic_exclusion_rules": [],
+        "applied_traffic_exclusion_rules": [
+            {
+                "id": "71fc02ec-6628-4712-ab3c-bd53cf1bb338",
+                "exclusion_rule_condition_id": "is-new-car",
+            }
+        ],
         "entity_applied_exclusion_conditions": [],
         "inference": {},
-        "filtered_action_pool": {}
+        "filtered_action_pool": {},
     },
 }
 
