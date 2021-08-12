@@ -7,8 +7,8 @@ from pytest import fixture
 from atmosphere.custom_activity.server import server
 
 
-@fixture
-def default_prediction():
+@fixture(name="default_prediction")
+def fixture_default_prediction():
     return {
         "atmosphere_call_uuid": "82fca11a-3c13-4e9f-93dc-8cbef03ab509",
         "info": {
@@ -64,8 +64,8 @@ def default_prediction():
     }
 
 
-@fixture
-def test_client():
+@fixture(name="test_client")
+def fixture_test_client() -> TestClient:
     return TestClient(server)
 
 
@@ -84,7 +84,7 @@ def test_get_prediction_response_payload_formats(test_client: TestClient):
 
 
 def test_format_prediction_payload_response(
-    test_client: TestClient, default_prediction: dict
+        test_client: TestClient, default_prediction: dict
 ):
     resp = test_client.post(
         "/format-prediction-payload-response",
@@ -96,7 +96,7 @@ def test_format_prediction_payload_response(
 
 
 def test_format_prediction_payload_response_empty_method(
-    test_client: TestClient, default_prediction: dict
+        test_client: TestClient, default_prediction: dict
 ):
     prediction = deepcopy(default_prediction)
     prediction["info"]["method"] = None
