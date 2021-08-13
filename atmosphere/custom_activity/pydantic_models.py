@@ -80,7 +80,7 @@ class AllocationLog(BaseModel):
 class InferenceInfo(BaseModel):
     activity: Activity
     current_process: Process
-    method: Method
+    method: Optional[Method]
     action: Action
     allocation: AllocationLog
 
