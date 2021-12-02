@@ -7,7 +7,7 @@ from seldon_core.metrics import SeldonMetrics
 
 
 def get_test_app(transformer) -> Flask:
-    """ Take a transformer and return a seldon test app """
+    """Take a transformer and return a seldon test app"""
     seldon_metrics = SeldonMetrics(worker_id_func=os.getpid)
     transformer.load()
     app = seldon_microservice.get_rest_microservice(transformer, seldon_metrics)

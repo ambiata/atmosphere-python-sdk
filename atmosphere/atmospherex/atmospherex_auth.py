@@ -41,8 +41,10 @@ def create_internal_jwt_token(settings: AuthSettings) -> str:
 
 class BearerTokenAuth(AuthBase):
     """
-    requests.AuthBase handling adding the jwt token in the expected header of the request.
-    If no auth settings are provided, this is a pass through, but it will log a warning that the client is sending
+    requests.AuthBase handling adding the jwt token in the expected
+    header of the request.
+    If no auth settings are provided, this is a pass through,
+    but it will log a warning that the client is sending
     request without authorization headers.
     """
 

@@ -63,7 +63,7 @@ threadloop==1.0.2
 thrift==0.13.0
 toml==0.10.2
 tornado==6.1
-typing-extensions==3.7.4.3
+typing-extensions==4.0.1
 tzlocal==2.1
 urllib3==1.25.9
 uvicorn==0.13.4
