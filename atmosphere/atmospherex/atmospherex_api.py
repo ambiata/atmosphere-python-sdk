@@ -16,7 +16,7 @@ class AtmospherexAPI:
     """
 
     def __init__(
-            self, atmospherex_base_url: str, auth_settings: Optional[AuthSettings]
+        self, atmospherex_base_url: str, auth_settings: Optional[AuthSettings]
     ):
         """
         :param atmospherex_base_url: The base url of the atmospherex API
@@ -28,10 +28,10 @@ class AtmospherexAPI:
         self.auth_settings = auth_settings
 
     def count_predictions(
-            self,
-            activity_endpoint: str,
-            from_datetime: datetime = None,
-            to_datetime: datetime = None,
+        self,
+        activity_endpoint: str,
+        from_datetime: datetime = None,
+        to_datetime: datetime = None,
     ) -> int:
         """
         Return the count of the predictions of the activity
@@ -56,10 +56,10 @@ class AtmospherexAPI:
         return response.json()["count"]
 
     def get_predictions(
-            self,
-            activity_endpoint: str,
-            from_datetime: datetime = None,
-            to_datetime: datetime = None,
+        self,
+        activity_endpoint: str,
+        from_datetime: datetime = None,
+        to_datetime: datetime = None,
     ) -> Generator:
         """
         Return a generator of predictions of the activity between
@@ -88,11 +88,11 @@ class AtmospherexAPI:
             yield from response.json()["predictions"]
 
     def dump_predictions(
-            self,
-            activity_endpoint: str,
-            file_path: str,
-            from_datetime: datetime = None,
-            to_datetime: datetime = None,
+        self,
+        activity_endpoint: str,
+        file_path: str,
+        from_datetime: datetime = None,
+        to_datetime: datetime = None,
     ):
         """
         Dump prediction of the activity between
