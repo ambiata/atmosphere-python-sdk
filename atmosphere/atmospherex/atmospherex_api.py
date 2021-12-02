@@ -20,7 +20,7 @@ class AtmospherexAPI:
     ):
         """
         :param atmospherex_base_url: The base url of the atmospherex API
-        :param auth_settings: Seetings to send a JWT token in the authorisation
+        :param auth_settings: Settings to send a JWT token in the authorisation
          header as a bearer token.
          If None, the header is not populated.
         """
