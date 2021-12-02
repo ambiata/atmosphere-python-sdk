@@ -29,6 +29,7 @@ setuptools.setup(
         'uvicorn>=0.11.8',
         'numpy>=1.19.2',
         'pydantic>=1.8.1',
+        'PyJWT>=2.3.0',
         'seldon-core==1.6.0',
         'simplejson>=3.17.2',
     ],
