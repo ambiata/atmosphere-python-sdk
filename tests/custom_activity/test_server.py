@@ -84,7 +84,7 @@ def test_get_prediction_response_payload_formats(test_client: TestClient):
 
 
 def test_format_prediction_payload_response(
-        test_client: TestClient, default_prediction: dict
+    test_client: TestClient, default_prediction: dict
 ):
     resp = test_client.post(
         "/format-prediction-payload-response",
@@ -96,7 +96,7 @@ def test_format_prediction_payload_response(
 
 
 def test_format_prediction_payload_response_empty_method(
-        test_client: TestClient, default_prediction: dict
+    test_client: TestClient, default_prediction: dict
 ):
     prediction = deepcopy(default_prediction)
     prediction["info"]["method"] = None
