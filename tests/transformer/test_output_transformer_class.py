@@ -8,13 +8,13 @@ class TransformerForTest(OutputTransformer):
 
 
 def test_transformer_tags_dict():
-    """ Make a sample transformer, see that tags is a dict"""
+    """Make a sample transformer, see that tags is a dict"""
     test_transformer = TransformerForTest()
     assert isinstance(test_transformer.tags(), dict)
 
 
 def test_empty_data():
-    """ Test sending in some empty data and check the output works  """
+    """Test sending in some empty data and check the output works"""
 
     test_transformer = TransformerForTest()
     result = test_transformer.transform_output_raw(

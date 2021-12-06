@@ -9,7 +9,7 @@ cffi==1.14.5
 chardet==4.0.0
 click==7.1.2
 configparser==5.0.2
-cryptography==3.4
+cryptography==3.4.8
 fastapi==0.63.0
 Flask==1.1.2
 Flask-Cors==3.0.10
@@ -43,6 +43,7 @@ py==1.10.0
 pyaml==20.4.0
 pycparser==2.20
 pydantic==1.8.1
+PyJWT==2.3.0
 pyparsing==2.4.7
 pyrsistent==0.17.3
 pytest==6.2.3
@@ -62,7 +63,7 @@ threadloop==1.0.2
 thrift==0.13.0
 toml==0.10.2
 tornado==6.1
-typing-extensions==3.7.4.3
+typing-extensions==4.0.1
 tzlocal==2.1
 urllib3==1.25.9
 uvicorn==0.13.4

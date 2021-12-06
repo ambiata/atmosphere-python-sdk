@@ -1,16 +1,20 @@
-import setuptools
 import pathlib
 
+import setuptools
+
 current_dir = pathlib.Path(__file__).parent.absolute()
+
 
 def get_version():
     with open(current_dir / "atmosphere" / "VERSION") as version_file:
         return version_file.readlines()[1].strip()
 
+
 setuptools.setup(
     name="atmosphere",
     author="Ambiata",
-    description="The atmosphere python SDK including multiple modules to help with setting up activities, transformers and more.",
+    description="The atmosphere python SDK including multiple modules to help with setting up activities, "
+                "transformers and more.",
     long_description_content_type="text/markdown",
     url="https://github.com/ambiata/atmosphere-python-sdk.git",
     packages=setuptools.find_packages(),
@@ -25,6 +29,7 @@ setuptools.setup(
         'uvicorn>=0.11.8',
         'numpy>=1.19.2',
         'pydantic>=1.8.1',
+        'PyJWT>=2.3.0',
         'seldon-core==1.6.0',
         'simplejson>=3.17.2',
     ],

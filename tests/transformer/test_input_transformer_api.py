@@ -11,7 +11,7 @@ from .utils import get_test_app
 
 
 def test_invalid_field():
-    """ Test invalid field, should get 422 error """
+    """Test invalid field, should get 422 error"""
 
     class TestModel(BaseModel):
         age: int = Field(..., ge=0, le=5, title="Age")

@@ -1,9 +1,11 @@
 import math
 from datetime import datetime
-from typing import Generator
+from typing import Generator, Optional
 
 import requests
 import simplejson as json
+
+from .atmospherex_auth import AuthSettings, BearerTokenAuth
 
 BATCH_LIMIT = 100
 
@@ -13,11 +15,17 @@ class AtmospherexAPI:
     This is the main class you instantiate to access the AtmosphereX API
     """
 
-    def __init__(self, atmospherex_base_url: str):
+    def __init__(
+        self, atmospherex_base_url: str, auth_settings: Optional[AuthSettings]
+    ):
         """
-        :param api_base_url: The base url of the atmospherex API
+        :param atmospherex_base_url: The base url of the atmospherex API
+        :param auth_settings: Settings to send a JWT token in the authorisation
+         header as a bearer token.
+         If None, the header is not populated.
         """
         self.atmospherex_base_url = atmospherex_base_url
+        self.auth_settings = auth_settings
 
     def count_predictions(
         self,
@@ -41,7 +49,9 @@ class AtmospherexAPI:
             f"{self.atmospherex_base_url}/api"
             f"/inferences/{activity_endpoint}/historical-data/count"
         )
-        response = requests.get(url, params=payload)
+        response = requests.get(
+            url, params=payload, auth=BearerTokenAuth(self.auth_settings)
+        )
         response.raise_for_status()
         return response.json()["count"]
 
@@ -71,7 +81,9 @@ class AtmospherexAPI:
                 "skip": BATCH_LIMIT * iteration,
             }
 
-            response = requests.get(url, params=payload)
+            response = requests.get(
+                url, params=payload, auth=BearerTokenAuth(self.auth_settings)
+            )
             response.raise_for_status()
             yield from response.json()["predictions"]
 
