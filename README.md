@@ -6,7 +6,7 @@ the libraries you need.
 
 ### Sub Packages
 - [To get started with activities](/atmosphere/custom_activity)
-- [To implement a transformer that we support](/atmosphere/transformer)
+- [To create a new method](/atmosphere/method)
 
 ### Test everything
 ```shell
