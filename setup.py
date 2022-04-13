@@ -25,6 +25,7 @@ setuptools.setup(
         'apscheduler>=3.9.1',
         'fastapi>=0.75.1',
         'PyJWT>=2.3.0',
+        'PyYAML>=6.0'
         'simplejson>=3.17.6',
         'uvicorn>=0.17.6'
     ]
