@@ -20,7 +20,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     include_package_data=True,
     version=get_version(),
-    python_requires='>=3.8',
+    python_requires='>=3.7',
     install_requires=[
         'apscheduler>=3.9.1',
         'fastapi>=0.75.1',
