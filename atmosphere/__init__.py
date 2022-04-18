@@ -1,2 +1,2 @@
-from . import custom_activity, transformer
+from . import custom_activity, method
 from ._version import __version__

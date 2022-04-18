@@ -2,6 +2,7 @@ import logging
 import logging.config
 import os
 from pathlib import Path
+from sys import getdefaultencoding
 
 import yaml
 
@@ -55,7 +56,7 @@ def setup_logging():
     )
 
     path = Path(__file__).parent / default_path
-    with open(path, "rt") as f:
+    with open(path, "rt", encoding=getdefaultencoding()) as f:
         config = yaml.safe_load(f)
     logging.config.dictConfig(config)
 

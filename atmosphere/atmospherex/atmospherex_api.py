@@ -1,5 +1,6 @@
 import math
 from datetime import datetime
+from sys import getdefaultencoding
 from typing import Generator, Optional
 
 import requests
@@ -103,7 +104,7 @@ class AtmospherexAPI:
         :param from_datetime: consider predictions from this datetime
         :param to_datetime: consider predictions to this datetime
         """
-        with open(file_path, "w") as fp:
+        with open(file_path, "w", encoding=getdefaultencoding()) as fp:
             json.dump(
                 {
                     "predictions": self.get_predictions(

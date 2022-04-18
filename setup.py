@@ -20,24 +20,13 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     include_package_data=True,
     version=get_version(),
-    python_requires='>=3.6',
+    python_requires='>=3.7',
     install_requires=[
-        'apscheduler>=3.7.0',
-        'fastapi>=0.63.0',
-        'pyyaml>=5.4.1',
-        'requests>=2.24.0',
-        'uvicorn>=0.11.8',
-        'numpy>=1.19.2',
-        'pydantic>=1.8.1',
+        'apscheduler>=3.9.1',
+        'fastapi>=0.75.1',
         'PyJWT>=2.3.0',
-        'seldon-core==1.6.0',
-        'simplejson>=3.17.2',
-    ],
-    tests_require=[
-        'httpretty',
-        'pytest',
-        'pytest-cov',
-        'pytest-env',
-        'requests-mock==1.8.0',
+        'PyYAML>=6.0',
+        'simplejson>=3.17.6',
+        'uvicorn>=0.17.6'
     ]
 )

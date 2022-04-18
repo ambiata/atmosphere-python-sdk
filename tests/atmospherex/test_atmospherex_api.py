@@ -1,5 +1,6 @@
 import json
 import os
+from sys import getdefaultencoding
 from typing import Optional
 
 import jwt
@@ -112,7 +113,7 @@ def test_atmospherex_dump_predictions():
             mock_prediction_requests(mock_request, auth_settings)
             api.dump_predictions(activity_endpoint, "test_dump_predictions.json")
 
-        with open("test_dump_predictions.json") as fp:
+        with open("test_dump_predictions.json", encoding=getdefaultencoding()) as fp:
             assert len(json.load(fp)["predictions"]) == 150
 
         os.remove("test_dump_predictions.json")
