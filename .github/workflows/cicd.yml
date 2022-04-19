@@ -38,6 +38,23 @@ jobs:
       - name: Run the test
         run: |
           ./scripts/test.sh
+
+  testouille:
+    name: testouille
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: '0'
+
+    - name: Dry bump version and push tag
+      id: dry-bump-tag
+      uses: anothrNick/github-tag-action@1.39.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        WITH_V: true
+        DRY_RUN: true
   
   tag:
     name: Create new release
@@ -47,6 +64,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+      with:
+        fetch-depth: '0'
 
     - name: Dry bump version and push tag
       id: dry-bump-tag
