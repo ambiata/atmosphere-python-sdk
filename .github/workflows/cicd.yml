@@ -38,20 +38,6 @@ jobs:
       - name: Run the test
         run: |
           ./scripts/test.sh
-
-  test-tag:
-    name: Test new version of github tag action, validating if it works
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Dry bump version and push tag
-        id: dry-bump-tag
-        uses: anothrNick/github-tag-action@1.39.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: true
-          DRY_RUN: true
   
   tag:
     name: Create new release
