@@ -50,7 +50,7 @@ jobs:
 
     - name: Dry bump version and push tag
       id: dry-bump-tag
-      uses: anothrNick/github-tag-action@1.34.0
+      uses: anothrNick/github-tag-action@1.39.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
@@ -70,7 +70,7 @@ jobs:
 
     - name: Push tag
       id: push-tag
-      uses: anothrNick/github-tag-action@1.34.0
+      uses: anothrNick/github-tag-action@1.39.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
