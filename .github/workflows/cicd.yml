@@ -47,10 +47,18 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+      with:
+        fetch-depth: '0'
+
+    # When https://github.com/anothrNick/github-tag-action/issues/150 will be closed, we should be able to use
+    # newer version of anothrNick/github-tag-action (post 1.39.0) which should include this step.
+    - name: git config
+      run: |
+        git config --global --add safe.directory /github/workspace
 
     - name: Dry bump version and push tag
       id: dry-bump-tag
-      uses: anothrNick/github-tag-action@1.39.0
+      uses: anothrNick/github-tag-action@1.36.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
@@ -70,7 +78,7 @@ jobs:
 
     - name: Push tag
       id: push-tag
-      uses: anothrNick/github-tag-action@1.39.0
+      uses: anothrNick/github-tag-action@1.36.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
