@@ -48,9 +48,13 @@ jobs:
       with:
         fetch-depth: '0'
 
+    - name: git config
+      run: |
+        git config --global --add safe.directory /github/workspace
+
     - name: Dry bump version and push tag
       id: dry-bump-tag
-      uses: anothrNick/github-tag-action@1.39.0
+      uses: anothrNick/github-tag-action@1.36.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
