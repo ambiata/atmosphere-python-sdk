@@ -1,5 +1,4 @@
 from copy import deepcopy
-from unittest.mock import patch
 
 from fastapi.testclient import TestClient
 from pytest import fixture
@@ -69,7 +68,6 @@ def fixture_test_client() -> TestClient:
     return TestClient(server)
 
 
-@patch("importlib.metadata", lambda: "foo")
 def test_entrypoint_test(client: TestClient):
     resp = client.get("/versions")
     assert resp.status_code == 200
