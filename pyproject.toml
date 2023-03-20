@@ -8,7 +8,7 @@ readme = "README.md"
 
 
 [tool.poetry.dependencies]
-python = ">=3.8,<3.10"
+python = ">=3.8,<3.12"
 apscheduler = ">=3.10.1"
 fastapi = ">=0.95.0"
 httpx = ">=0.23.3"
