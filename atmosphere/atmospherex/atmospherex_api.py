@@ -51,7 +51,7 @@ class AtmospherexAPI:
             f"/inferences/{activity_endpoint}/historical-data/count"
         )
         response = requests.get(
-            url, params=payload, auth=BearerTokenAuth(self.auth_settings)
+            url, params=payload, auth=BearerTokenAuth(self.auth_settings), timeout=5
         )
         response.raise_for_status()
         return response.json()["count"]
@@ -83,7 +83,7 @@ class AtmospherexAPI:
             }
 
             response = requests.get(
-                url, params=payload, auth=BearerTokenAuth(self.auth_settings)
+                url, params=payload, auth=BearerTokenAuth(self.auth_settings), timeout=5
             )
             response.raise_for_status()
             yield from response.json()["predictions"]
