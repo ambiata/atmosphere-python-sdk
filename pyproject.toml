@@ -9,13 +9,13 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.12"
-apscheduler = ">=3.10.1"
-fastapi = ">=0.95.0"
-httpx = ">=0.23.3"
-pyjwt = ">=2.6.0"
-pyyaml = ">=6.0"
-simplejson = ">=3.18.4"
-uvicorn = ">=0.21.1"
+apscheduler = ">=3.10.1,<4.0.0"
+fastapi = ">=0.95.0,<1.0.0"
+httpx = ">=0.23.3,<1.0.0"
+pyjwt = ">=2.6.0,<3.0.0"
+pyyaml = ">=6.0,<7.0"
+simplejson = ">=3.18.4,<4.0.0"
+uvicorn = ">=0.21.1,<1.0.0"
 
 [tool.poetry.group.dev.dependencies]
 autoflake = "2.0.2"
