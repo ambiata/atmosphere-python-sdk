@@ -1,2 +1,1 @@
-include atmosphere/activity/*_logging.yaml
-include atmosphere/VERSION
+include atmosphere/custom_activity/*_logging.yaml

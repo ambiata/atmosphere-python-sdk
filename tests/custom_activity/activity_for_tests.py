@@ -40,7 +40,9 @@ class ActivityCustomCodeForTest(BaseActivityCustomCode):
     ) -> Tuple[Response, dict]:
         return (
             requests.post(
-                url_prediction_endpoint, json=ExpectedModel(a="a", b=3).dict()
+                url_prediction_endpoint,
+                json=ExpectedModel(a="a", b=3).dict(),
+                timeout=5,
             ),
             prediction_extra_info,
         )
@@ -53,5 +55,5 @@ class ActivityCustomCodeForTest(BaseActivityCustomCode):
     ) -> Response:
         assert info_from_prediction == prediction_extra_info
         return requests.post(
-            url_outcome_endpoint, json=ExpectedModel(a="b", b=2).dict()
+            url_outcome_endpoint, json=ExpectedModel(a="b", b=2).dict(), timeout=5
         )

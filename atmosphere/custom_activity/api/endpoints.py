@@ -1,9 +1,8 @@
 import logging
+from importlib import metadata
 
 from fastapi import Response
 from starlette.status import HTTP_204_NO_CONTENT
-
-from atmosphere._version import get_version
 
 from ..base_class import BaseActivityCustomCode
 from ..pydantic_models import (AppliedExclusionConditionsResponse,
@@ -24,7 +23,8 @@ class Endpoints:
 
     def get_versions(self) -> Versions:
         return Versions(
-            base_version=get_version(), module_version=self.module.get_module_version()
+            base_version=metadata.version("atmosphere"),
+            module_version=self.module.get_module_version(),
         )
 
     def _init_routes(self):
