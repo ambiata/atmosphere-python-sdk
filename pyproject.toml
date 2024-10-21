@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "atmosphere"
-version = "v6.0.0"
+version = "v5.0.0"
 description = "The atmosphere python SDK including multiple modules to help with setting up activities, transformers and more."
 authors = ["Ambiata <atmosphere@ambiata.com>"]
 license = "MIT"
