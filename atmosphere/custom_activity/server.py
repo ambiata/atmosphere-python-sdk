@@ -3,7 +3,7 @@ import logging
 from fastapi import FastAPI
 from fastapi.exception_handlers import request_validation_exception_handler
 from fastapi.testclient import TestClient
-from pydantic.error_wrappers import ValidationError
+from pydantic import ValidationError
 
 from .api.endpoints import Endpoints
 from .base_config import Config
