@@ -5,8 +5,6 @@ from pytest import fixture
 
 from atmosphere.custom_activity.server import server
 
-import json
-
 
 @fixture(name="default_prediction")
 def fixture_default_prediction():
