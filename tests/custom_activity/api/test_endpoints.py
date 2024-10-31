@@ -16,7 +16,7 @@ def _assert_204(response):
 
 def test_validate_prediction(client: TestClient, example) -> None:
     response = client.post(
-        "/validate-prediction-request", json=example.good_prediction.dict()
+        "/validate-prediction-request", json=example.good_prediction.model_dump()
     )
     _assert_204(response)
 
@@ -27,7 +27,7 @@ def test_validate_prediction_not_valid(client: TestClient, example) -> None:
 
 def test_validate_outcome(client: TestClient, example) -> None:
     response = client.post(
-        "/validate-outcome-request", json=example.good_prediction.dict()
+        "/validate-outcome-request", json=example.good_prediction.model_dump()
     )
     _assert_204(response)
 
@@ -37,7 +37,7 @@ def test_validate_outcome_not_valid(client: TestClient, example) -> None:
 
 
 def test_compute_rewards(client: TestClient, example) -> None:
-    response = client.post("/compute-reward", json=example.good_prediction.dict())
+    response = client.post("/compute-reward", json=example.good_prediction.model_dump())
     assert response.status_code == 200
     # Raise an exception if not if the model does not validate the payload
     compute_reward_response = ComputeRewardResponse.parse_obj(response.json())
@@ -63,13 +63,13 @@ def _failed_validation(client, path, example):
     assert response.status_code == 422
 
     # Extra field
-    data = example.good_prediction.dict()
+    data = example.good_prediction.model_dump()
     data["c"] = 2
     response = client.post(path, json=data)
     assert response.status_code == 422
 
     # Wrong type
-    data = example.good_prediction.dict()
+    data = example.good_prediction.model_dump()
     data["b"] = "def"
     response = client.post(path, json=data)
     assert response.status_code == 422
