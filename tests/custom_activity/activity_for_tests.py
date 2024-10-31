@@ -41,7 +41,7 @@ class ActivityCustomCodeForTest(BaseActivityCustomCode):
         return (
             requests.post(
                 url_prediction_endpoint,
-                json=ExpectedModel(a="a", b=3).dict(),
+                json=ExpectedModel(a="a", b=3).model_dump(),
                 timeout=5,
             ),
             prediction_extra_info,
@@ -55,5 +55,5 @@ class ActivityCustomCodeForTest(BaseActivityCustomCode):
     ) -> Response:
         assert info_from_prediction == prediction_extra_info
         return requests.post(
-            url_outcome_endpoint, json=ExpectedModel(a="b", b=2).dict(), timeout=5
+            url_outcome_endpoint, json=ExpectedModel(a="b", b=2).model_dump(), timeout=5
         )

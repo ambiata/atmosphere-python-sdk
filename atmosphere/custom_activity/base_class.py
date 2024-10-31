@@ -79,7 +79,7 @@ class BaseActivityCustomCode(ABC):
         You can format the prediction the way you want based
         on the information returned by default
         """
-        return default_prediction_response
+        return default_prediction_response.model_dump()
 
     def get_exclusion_rule_conditions(self) -> ExclusionRuleConditionListResponse:
         """
