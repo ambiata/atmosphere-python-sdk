@@ -5,6 +5,8 @@ from pytest import fixture
 
 from atmosphere.custom_activity.server import server
 
+import json
+
 
 @fixture(name="default_prediction")
 def fixture_default_prediction():
@@ -15,7 +17,7 @@ def fixture_default_prediction():
                 "id": "c22d6e7a-fd33-4f60-8e5a-0a0ab9bb1da1",
                 "name": "kana activity",
                 "description": "Kana mock activity",
-                "start_date": "2020-11-06T03:17:29.600944+00:00",
+                "start_date": "2020-11-06T03:17:29.600944Z",
                 "end_date": None,
                 "status": "running",
                 "current_category": "deployment",
@@ -26,7 +28,7 @@ def fixture_default_prediction():
                 "name": "kana",
                 "description": "Kana mock",
                 "category": "deployment",
-                "start_date": "2020-11-06T03:17:29.600944+00:00",
+                "start_date": "2020-11-06T03:17:29.600944Z",
                 "end_date": None,
                 "status": "running",
             },
@@ -84,15 +86,12 @@ def test_get_prediction_response_payload_formats(test_client: TestClient):
 def test_format_prediction_payload_response(
     test_client: TestClient, default_prediction: dict
 ):
-    resp = test_client.post(
-        "/format-prediction-payload-response",
+    resp = test_client.request(
+        method="post",
+        url="/format-prediction-payload-response",
         params={"payload_format": "test"},
         json=default_prediction,
     )
-    print("resp.json:::::::::::::::")
-    print(resp.json())
-    print("default_prediction::::::")
-    print(default_prediction)
     assert resp.status_code == 200
     assert resp.json() == default_prediction
 
