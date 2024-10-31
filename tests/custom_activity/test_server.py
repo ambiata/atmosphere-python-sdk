@@ -93,7 +93,6 @@ def test_format_prediction_payload_response(
     print(resp.json())
     print("default_prediction::::::")
     print(default_prediction)
-    
     assert resp.status_code == 200
     assert resp.json() == default_prediction
 
