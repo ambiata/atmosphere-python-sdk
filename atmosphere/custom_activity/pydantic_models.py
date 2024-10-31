@@ -22,7 +22,7 @@ class Versions(BaseModelForbiddingExtraFields):
 
 class PredictionResponsePayloadFormat(BaseModel):
     name: str
-    description: Optional[str]
+    description: Optional[str] = None
 
 
 class PredictionResponsePayloadFormatListResponse(BaseModel):
@@ -35,7 +35,7 @@ class Phase(BaseModel):
     description: str
     status: str
     start_date: datetime
-    end_date: Optional[datetime]
+    end_date: Optional[datetime] = None
 
 
 class Activity(BaseModel):
@@ -43,7 +43,7 @@ class Activity(BaseModel):
     name: str
     description: str
     start_date: datetime
-    end_date: Optional[datetime]
+    end_date: Optional[datetime] = None
     status: str
     current_category: str
     endpoint: str
@@ -54,8 +54,8 @@ class Process(BaseModel):
     name: str
     description: str
     category: str
-    start_date: Optional[datetime]
-    end_date: Optional[datetime]
+    start_date: Optional[datetime] = None
+    end_date: Optional[datetime] = None
     status: str
 
 
@@ -63,7 +63,7 @@ class Method(BaseModel):
     id: UUID
     name: str
     method_type: str
-    config: Optional[dict]
+    config: Optional[dict] = None
 
 
 class Action(BaseModel):
@@ -80,7 +80,7 @@ class AllocationLog(BaseModel):
 class InferenceInfo(BaseModel):
     activity: Activity
     current_process: Process
-    method: Optional[Method]
+    method: Optional[Method] = None
     action: Action
     allocation: AllocationLog
 
