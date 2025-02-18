@@ -26,8 +26,7 @@ class PredictionRequest(BaseModel):
 
 
 class PredictionResponse(BaseModel):
-    class Config:
-        ignore_extra = False
+    model_config = {"ignore_extra": False}
 
     action_name: str = Field(
         ..., title="Action name", description="Prediction action name"

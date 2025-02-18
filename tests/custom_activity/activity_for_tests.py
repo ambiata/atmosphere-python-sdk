@@ -11,9 +11,9 @@ prediction_extra_info = {"extra": "inf", "awesome_value": 42}
 
 
 class ExpectedModel(BaseModel):
-    class Config:
-        extra = "forbid"
-
+    model_config = {
+        "extra": "forbid"
+    }
     a: str
     b: int
 
