@@ -29,7 +29,7 @@ class ActivityCustomCodeForTest(BaseActivityCustomCode):
         ExpectedModel.model_validate(outcome_request)
 
     def compute_reward(self, outcome_request: dict) -> ComputeRewardResponse:
-        outcome = ExpectedModel.parse_obj(outcome_request)
+        outcome = ExpectedModel.model_validate(outcome_request)
         return ComputeRewardResponse(reward=outcome.b)
 
     def get_module_version(self) -> str:
