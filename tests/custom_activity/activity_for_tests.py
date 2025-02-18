@@ -23,10 +23,10 @@ class ActivityCustomCodeForTest(BaseActivityCustomCode):
     expected_module_version = "0.4.2"
 
     def validate_prediction_request(self, prediction_request: dict) -> None:
-        ExpectedModel.validate(prediction_request)
+        ExpectedModel.model_validate(prediction_request)
 
     def validate_outcome_request(self, outcome_request: dict) -> None:
-        ExpectedModel.validate(outcome_request)
+        ExpectedModel.model_validate(outcome_request)
 
     def compute_reward(self, outcome_request: dict) -> ComputeRewardResponse:
         outcome = ExpectedModel.parse_obj(outcome_request)
