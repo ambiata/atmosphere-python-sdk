@@ -40,7 +40,7 @@ def test_compute_rewards(client: TestClient, example) -> None:
     response = client.post("/compute-reward", json=example.good_prediction.model_dump())
     assert response.status_code == 200
     # Raise an exception if not if the model does not validate the payload
-    compute_reward_response = ComputeRewardResponse.parse_obj(response.json())
+    compute_reward_response = ComputeRewardResponse.model_validate(response.json())
     assert compute_reward_response.reward == example.b
 
 
@@ -48,7 +48,7 @@ def test_versions(client: TestClient) -> None:
     response = client.get("/versions")
     assert response.status_code == 200
     # Raise an exception if not if the model does not validate the payload
-    compute_reward_response = Versions.parse_obj(response.json())
+    compute_reward_response = Versions.model_validate(response.json())
     assert len(compute_reward_response.base_version) > 0
     assert (
         compute_reward_response.module_version

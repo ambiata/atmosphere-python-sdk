@@ -11,9 +11,9 @@ prediction_extra_info = {"extra": "inf", "awesome_value": 42}
 
 
 class ExpectedModel(BaseModel):
-    class Config:
-        extra = "forbid"
-
+    model_config = {
+        "extra": "forbid"
+    }
     a: str
     b: int
 
@@ -23,13 +23,13 @@ class ActivityCustomCodeForTest(BaseActivityCustomCode):
     expected_module_version = "0.4.2"
 
     def validate_prediction_request(self, prediction_request: dict) -> None:
-        ExpectedModel.validate(prediction_request)
+        ExpectedModel.model_validate(prediction_request)
 
     def validate_outcome_request(self, outcome_request: dict) -> None:
-        ExpectedModel.validate(outcome_request)
+        ExpectedModel.model_validate(outcome_request)
 
     def compute_reward(self, outcome_request: dict) -> ComputeRewardResponse:
-        outcome = ExpectedModel.parse_obj(outcome_request)
+        outcome = ExpectedModel.model_validate(outcome_request)
         return ComputeRewardResponse(reward=outcome.b)
 
     def get_module_version(self) -> str:

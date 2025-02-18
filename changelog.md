@@ -1,5 +1,9 @@
 # Changelog
 
+## v6.0.2
+* Dropped support for Python 3.9.x
+* Included support for Python 3.13.x
+
 ## v6.0.0
 
 * Dropped support for Python 3.8.x
